@@ -25,12 +25,12 @@ class Resume extends React.Component {
       })
     }
     handleAddTodoItem(event) {
-      console.log(this.hobby);
       if( this.hobby[0] !== null){
         this.state.value.push(this.state.textvalue)
         this.hobby.push(this.state.textvalue);
         localStorage.setItem('Hobby',this.hobby);
-      }else if(this.hobby[0] === null || this.hobby === undefined ){
+      }else if(this.hobby[0] === null || this.hobby === undefined || this.hobby[0] === ""){
+        localStorage.setItem('Hobby',[])
         this.state.value.push(this.state.textvalue)
         localStorage.setItem('Hobby',this.state.value);
       }
@@ -43,7 +43,6 @@ class Resume extends React.Component {
       event.preventDefault();
     }
     handledelTodoItem(v,event){
-      console.log(this.hobby);
       for(var i = 0; i < this.state.value.length; i++){
         if(this.state.value[i] === v){
            this.state.value.splice(i, 1);
@@ -61,9 +60,6 @@ class Resume extends React.Component {
       this.setState({
         value:this.state.value
       })
-      
-      console.log(this.hobby);
-      console.log(this.state.value)
       event.preventDefault();
     }
 
@@ -103,27 +99,28 @@ class Resume extends React.Component {
                       <h4 className="text-uppercase title mt-2">Education </h4>
                     </div>
                     <div className="row justify-content-md-center mt-4">
-                      <div className="col-9">
+                      <div className="col-10">
                          <span className="line-verticle black"></span>
 
                         <div className="row"> 
-                          <p className="col-5">2011-2015</p>
+                          <p className="col-4">2011-2015</p>
                           <span className="lineblack shot first"></span>
-                          <p className="col-7 text-right">Mahidol University<br/>
-                            Major Multimedia<br/>
-
+                          <p className="col-8 text-right detail"><span className="ml-4 h6">Mahidol University<br/></span>
+                            <span className="font-11px">Major Multimedia<br/><br/></span>
+                            <span className="font-12px">
                             Faculty of Information and<br/>
                             Communication - Technology<br/>
-                            Nakhon Pathom, Thailand<br/>
+                            Nakhon Pathom, Thailand<br/></span>
                           </p>
                         </div>
-                        <div className="row"> 
-                          <p className="col-5">2011</p>
+                        <div className="row mt-3"> 
+                          <p className="col-4">2011</p>
                           <span className="lineblack shot second"></span>
-                          <p className="col-7 text-right">High School Diploma<br/>
-                            Science/Math<br/>
+                          <p className="col-8 text-right detail"><span className="ml-4 h6">High School Diploma<br/></span>
+                          <span className="font-11px">Science/Math<br/><br/></span>
+                          <span className="font-12px">
                             ST. Francis Xavier Convent School<br/>
-                            Bangkok, Thailand<br/>
+                            Bangkok, Thailand<br/></span>
                           </p>
                         </div>
                       </div>
@@ -214,7 +211,7 @@ class Resume extends React.Component {
                             <div className="row">
                               <p className="title-tube text-right">PHOTOSHOP</p>
                               <div className="rectangle-tube ml-3">
-                                  <div className="bg-155px"></div>
+                                  <div className="bg-135px"></div>
                               </div>
                             </div>
                           </div>
@@ -222,7 +219,7 @@ class Resume extends React.Component {
                             <div className="row">
                               <p className="title-tube">ILLUSTRATOR</p>
                               <div className="rectangle-tube ml-3">
-                                  <div className="bg-155px"></div>
+                                  <div className="bg-120px"></div>
                               </div>
                             </div>
                           </div>
@@ -405,7 +402,7 @@ class Resume extends React.Component {
                       <p className="col-9 offset-md-1">(Test - Add Data On localStorage)</p>
                       <div className="col-10 offset-md-1 my-3">
                         <div className="row">
-                          <p className="col-12"> {this.hobby}</p>
+                          <p className="col-12 detail"> {this.hobby}</p>
                           <div className="col-6 pt-5">
                             <p>NEW HOBBY:</p>   
                                   {value.map((hobby) => {
