@@ -32,7 +32,7 @@ class Resume extends React.Component {
         localStorage.setItem('Hobby',this.hobby);
       }else if(this.hobby[0] === null || this.hobby === undefined ){
         this.state.value.push(this.state.textvalue)
-        this.hobby =  localStorage.setItem('Hobby',this.state.value);
+        localStorage.setItem('Hobby',this.state.value);
       }
     
       this.setState(
@@ -42,29 +42,29 @@ class Resume extends React.Component {
 
       event.preventDefault();
     }
-    handledelTodoItem(v){
+    handledelTodoItem(v,event){
       console.log(this.hobby);
       for(var i = 0; i < this.state.value.length; i++){
         if(this.state.value[i] === v){
-           delete this.state.value[i];
-          
+           this.state.value.splice(i, 1);
+           localStorage.setItem('Hobby',this.state.value);
         }
        
       }
       for(var j = 0; j < this.hobby.length; j++){
         if(this.hobby[j] === v){
-          delete this.hobby[j]
+          // delete this.hobby[j]
+          this.hobby.splice(j, 1);
           localStorage.setItem('Hobby',this.hobby);
-
         }
       }
       this.setState({
         value:this.state.value
       })
       
-      // this.hobby = delete this.hobby[this.state.value];
       console.log(this.hobby);
       console.log(this.state.value)
+      event.preventDefault();
     }
 
     render() {
